@@ -17,10 +17,10 @@ public class Validacao extends AppCompatActivity {
     private Button btn01, btn02, btn03, btn04, btn05, btn06, btn07, btn08, btn09, btn00;
     private Button btnConfirmaPre, btnBrancoPre, btnCorrigePre;
     private EditText num01, num02;
-    private TextView nomePre;
+    private TextView nomePre, informationNulo2, informationConfirma2, informationTecla2, informationCorrige2;
     ImageView avatarPre, avatarVice;
-    int votoBrancoPre;
-    int votoBranco, votoNulo, votoBart, votoHomer;
+    private int votoBrancoPre, votoNuloPre, votoNaruto, votoGoku;
+    private int votoBranco, votoNulo, votoBart, votoHomer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +32,10 @@ public class Validacao extends AppCompatActivity {
         votoNulo = i.getIntExtra("nulo", votoNulo);
         votoHomer = i.getIntExtra("homer", votoHomer);
         votoBart = i.getIntExtra("bart", votoBart);
+        votoNaruto = i.getIntExtra("naruto", votoNaruto);
+        votoGoku = i.getIntExtra("goku", votoGoku);
+        votoBrancoPre = i.getIntExtra("brancoPre", votoBrancoPre);
+        votoNuloPre = i.getIntExtra("nuloPre", votoNuloPre);
 
 
         Inicia();
@@ -41,10 +45,22 @@ public class Validacao extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(Validacao.this,Finaliza.class);
                 int result = Valida();
+                if (result == 11){
+                    votoGoku = votoGoku + 1;
+                }else if (result == 22){
+                    votoNaruto = votoNaruto + 1;
+                }else if (result == 0){
+                    votoNuloPre = votoNuloPre + 1;
+                }
+
                 i.putExtra("branco", votoBranco);
                 i.putExtra("nulo", votoNulo);
                 i.putExtra("bart", votoBart);
                 i.putExtra("homer", votoHomer);
+                i.putExtra("naruto", votoNaruto);
+                i.putExtra("goku", votoGoku);
+                i.putExtra("nuloPre", votoNuloPre);
+                i.putExtra("brancoPre", votoBrancoPre);
                 startActivity(i);
             }
         });
@@ -154,6 +170,11 @@ public class Validacao extends AppCompatActivity {
         btnCorrigePre = findViewById(R.id.btnCorrigePre);
 
         nomePre = findViewById(R.id.nomePre);
+        informationNulo2 = findViewById(R.id.informationNulo2);
+        informationConfirma2 = findViewById(R.id.informationConfirma2);
+        informationTecla2 = findViewById(R.id.informationTecla2);
+        informationCorrige2 = findViewById(R.id.informationCorrige2);
+
         avatarPre = findViewById(R.id.avatarPre);
         avatarPre.setImageResource(R.drawable.avatar);
         avatarVice = findViewById(R.id.avatarVice);
@@ -188,27 +209,37 @@ public class Validacao extends AppCompatActivity {
             avatarPre.setImageResource(R.drawable.avatar_goku);
             nomePre.setText(String.valueOf("Son Goku"));
             avatarVice.setImageResource(R.drawable.avatar_vegeta);
-            Toast.makeText(Validacao.this,"Um numero foi clicado", Toast.LENGTH_LONG).show();
-
+            informationConfirma2.setText(String.valueOf("CONFIRMA para CONFIRMAR este voto"));
+            informationCorrige2.setText(String.valueOf("CORRIGE para REINICIAR este voto"));
+            informationTecla2.setText(String.valueOf("Aperte a tecla para:"));
         }else if (numConverted == 22){
             nomePre.setText(String.valueOf("Uzumaki Naruto"));
             avatarPre.setImageResource(R.drawable.avatar_naruto);
             avatarVice.setImageResource(R.drawable.avatar_sasuke);
+            informationConfirma2.setText(String.valueOf("CONFIRMA para CONFIRMAR este voto"));
+            informationCorrige2.setText(String.valueOf("CORRIGE para REINICIAR este voto"));
+            informationTecla2.setText(String.valueOf("Aperte a tecla para:"));
         }else{
-            Toast.makeText(Validacao.this,"Número inválido, por favor clique em CORRIGE e digite novemente.", Toast.LENGTH_LONG).show();
+//            Toast.makeText(Validacao.this,"Número inválido, por favor clique em CORRIGE e digite novemente.", Toast.LENGTH_LONG).show();
+            nomePre.setText(String.valueOf("NÚMERO ERRADO!"));
+            informationNulo2.setText(String.valueOf("VOTO NULO"));
             numConverted = 0;
         }
         return numConverted;
     }
 
     public void Branco(){
-        votoBrancoPre = votoBrancoPre++;
+        votoBrancoPre = votoBrancoPre + 1;
         Intent i = new Intent(Validacao.this,Finaliza.class);
-        int result = Valida();
         i.putExtra("branco", votoBranco);
         i.putExtra("nulo", votoNulo);
         i.putExtra("bart", votoBart);
         i.putExtra("homer", votoHomer);
+        i.putExtra("naruto", votoNaruto);
+        i.putExtra("goku", votoGoku);
+        i.putExtra("nuloPre", votoNuloPre);
+        i.putExtra("brancoPre", votoBrancoPre);
+
         startActivity(i);
     }
 }

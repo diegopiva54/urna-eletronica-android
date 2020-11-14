@@ -13,11 +13,13 @@ import android.widget.Toast;
 
 public class Principal extends AppCompatActivity {
 
+    Intent i;
     private EditText num1, num2, num3, num4, num5;
     private Button btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn0;
-    private Button btnConfirma, btnCorrige, btnBranco;
+    private Button btnConfirma, btnCorrige, btnBranco, btnResult;
     TextView nome, informationConfirma, informationCorrige, informationNulo, informationTecla;
     ImageView avatar;
+    private int goku, naruto, nuloPre, brancoPre;
     private int votoBranco, votoNulo, votoHomer, votoBart;
 
 
@@ -25,6 +27,16 @@ public class Principal extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
+
+        i = getIntent();
+        votoHomer = i.getIntExtra("homer", votoHomer);
+        votoBart = i.getIntExtra("bart", votoBart);
+        votoBranco = i.getIntExtra("branco", votoBranco);
+        votoNulo = i.getIntExtra("nulo", votoNulo);
+        naruto = i.getIntExtra("naruto", naruto);
+        goku = i.getIntExtra("goku", goku);
+        brancoPre = i.getIntExtra("brancoPre", brancoPre);
+        nuloPre = i.getIntExtra("nuloPre", nuloPre);
 
         Inicio();
 
@@ -37,7 +49,7 @@ public class Principal extends AppCompatActivity {
                     votoHomer = votoHomer + 1;
                 }else if (result == 22222){
                     votoBart = votoBart + 1;
-                }else{
+                }else if (result == 0){
                     Nulo();
                 }
 
@@ -45,6 +57,10 @@ public class Principal extends AppCompatActivity {
                 i.putExtra("bart", votoBart);
                 i.putExtra("branco", votoBranco);
                 i.putExtra("nulo", votoNulo);
+                i.putExtra("naruto", naruto);
+                i.putExtra("goku", goku);
+                i.putExtra("brancoPre", brancoPre);
+                i.putExtra("nuloPre", nuloPre);
                 startActivity(i);
             }
         });
@@ -133,6 +149,24 @@ public class Principal extends AppCompatActivity {
             }
         });
 
+        btnResult.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent result = new Intent(Principal.this, Resultado.class);
+
+                result.putExtra("homer", votoHomer);
+                result.putExtra("bart", votoBart);
+                result.putExtra("goku", goku);
+                result.putExtra("naruto", naruto);
+                result.putExtra("branco", votoBranco);
+                result.putExtra("nulo", votoNulo);
+                result.putExtra("brancoPre", brancoPre);
+                result.putExtra("nuloPre", nuloPre);
+
+                startActivity(result);
+            }
+        });
+
     }
 
     public void Inicio(){ // REFERÊNCIA OS ELEMENTOS A UMA VARIÁVEL
@@ -162,6 +196,7 @@ public class Principal extends AppCompatActivity {
         btnConfirma = findViewById(R.id.btnConfirma);
         btnCorrige = findViewById(R.id.btnCorrige);
         btnBranco = findViewById(R.id.btnBranco);
+        btnResult = findViewById(R.id.btnResult);
 
         avatar = findViewById(R.id.avatarPre);
         avatar.setImageResource(R.drawable.avatar);
@@ -213,7 +248,7 @@ public class Principal extends AppCompatActivity {
         }else{
             nome.setText(String.valueOf("NÚMERO ERRADO!"));
             informationNulo.setText(String.valueOf("VOTO NULO"));
-            Toast.makeText(Principal.this,"Número inválido, por favor clique em CORRIGE e digite novemente.", Toast.LENGTH_LONG).show();
+//            Toast.makeText(Principal.this,"Número inválido, por favor clique em CORRIGE e digite novemente.", Toast.LENGTH_LONG).show();
             numConvert = 0;
         }
         return numConvert;
@@ -234,16 +269,20 @@ public class Principal extends AppCompatActivity {
     }
 
     public void Branco(){
-        votoBranco = votoBranco++;
-        Intent i = new Intent(Principal.this, Validacao.class);
-        i.putExtra("homer", votoHomer);
-        i.putExtra("bart", votoBart);
-        i.putExtra("branco", votoBranco);
-        i.putExtra("nulo", votoNulo);
-        startActivity(i);
+        votoBranco = votoBranco + 1;
+        Intent b = new Intent(Principal.this, Validacao.class);
+        b.putExtra("homer", votoHomer);
+        b.putExtra("bart", votoBart);
+        b.putExtra("branco", votoBranco);
+        b.putExtra("nulo", votoNulo);
+        b.putExtra("goku", goku);
+        b.putExtra("naruto", naruto);
+        b.putExtra("nuloPre", nuloPre);
+        b.putExtra("brancoPre", brancoPre);
+        startActivity(b);
     }
 
     public void Nulo(){
-        votoNulo = votoNulo++;
+        votoNulo = votoNulo + 1;
     }
 }

@@ -10,7 +10,8 @@
         android:screenOrientation="landscape"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".Finaliza"></activity>
+        <activity android:name=".Resultado"></activity>
+        <activity android:name=".Finaliza" />
         <activity android:name=".Validacao" />
         <activity
             android:name=".Principal"
