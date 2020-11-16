@@ -3,6 +3,7 @@ package br.com.agencianextdigital.aplicativodevotao;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -44,6 +45,8 @@ public class Principal extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Principal.this, Validacao.class);
+                MediaPlayer audio = MediaPlayer.create(Principal.this, R.raw.som1);
+
                 int result = Valida();
                 if (result == 11111){
                     votoHomer = votoHomer + 1;
@@ -61,6 +64,7 @@ public class Principal extends AppCompatActivity {
                 i.putExtra("goku", goku);
                 i.putExtra("brancoPre", brancoPre);
                 i.putExtra("nuloPre", nuloPre);
+                audio.start();
                 startActivity(i);
             }
         });
@@ -271,6 +275,7 @@ public class Principal extends AppCompatActivity {
     public void Branco(){
         votoBranco = votoBranco + 1;
         Intent b = new Intent(Principal.this, Validacao.class);
+        MediaPlayer audio = MediaPlayer.create(Principal.this, R.raw.som1);
         b.putExtra("homer", votoHomer);
         b.putExtra("bart", votoBart);
         b.putExtra("branco", votoBranco);
@@ -279,6 +284,7 @@ public class Principal extends AppCompatActivity {
         b.putExtra("naruto", naruto);
         b.putExtra("nuloPre", nuloPre);
         b.putExtra("brancoPre", brancoPre);
+        audio.start();
         startActivity(b);
     }
 
