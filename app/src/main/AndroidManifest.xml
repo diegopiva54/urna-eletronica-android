@@ -10,14 +10,7 @@
         android:screenOrientation="landscape"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".Resultado"
-            android:screenOrientation="landscape"></activity>
-        <activity android:name=".Finaliza"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".Validacao"
-            android:screenOrientation="landscape"/>
-        <activity
-            android:name=".Principal"
+        <activity android:name=".SplashScreen"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,6 +18,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Resultado"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Finaliza"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Validacao"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Principal"
+            android:screenOrientation="landscape"/>
     </application>
 
 </manifest>
