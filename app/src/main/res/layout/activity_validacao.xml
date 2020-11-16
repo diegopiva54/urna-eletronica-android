@@ -319,7 +319,7 @@
     <EditText
         android:id="@+id/num01"
         android:layout_width="40dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:focusable="false"
@@ -329,7 +329,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/num02"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.565" />
+        app:layout_constraintVertical_bias="0.565"
+        android:background="@drawable/shape"/>
 
     <ImageView
         android:id="@+id/avatarPre"
@@ -362,7 +363,7 @@
     <EditText
         android:id="@+id/num02"
         android:layout_width="40dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginEnd="100dp"
         android:ems="10"
         android:focusable="false"
@@ -372,7 +373,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/view6"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.565" />
+        app:layout_constraintVertical_bias="0.565"
+        android:background="@drawable/shape"/>
 
     <Button
         android:id="@+id/btn06"
