@@ -44,27 +44,31 @@ public class Validacao extends AppCompatActivity {
         btnConfirmaPre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Validacao.this,Finaliza.class);
+                Intent i = new Intent(Validacao.this, Finaliza.class);
                 MediaPlayer audio = MediaPlayer.create(Validacao.this, R.raw.som2);
                 int result = Valida();
-                if (result == 11){
-                    votoGoku = votoGoku + 1;
-                }else if (result == 22){
-                    votoNaruto = votoNaruto + 1;
-                }else if (result == 0){
-                    votoNuloPre = votoNuloPre + 1;
-                }
+                if (num01.getText().toString().equals("") || num02.getText().toString().equals("")) {
+                    Corrige();
+                } else {
+                    if (result == 11) {
+                        votoGoku = votoGoku + 1;
+                    } else if (result == 22) {
+                        votoNaruto = votoNaruto + 1;
+                    } else if (result == 0) {
+                        votoNuloPre = votoNuloPre + 1;
+                    }
 
-                i.putExtra("branco", votoBranco);
-                i.putExtra("nulo", votoNulo);
-                i.putExtra("bart", votoBart);
-                i.putExtra("homer", votoHomer);
-                i.putExtra("naruto", votoNaruto);
-                i.putExtra("goku", votoGoku);
-                i.putExtra("nuloPre", votoNuloPre);
-                i.putExtra("brancoPre", votoBrancoPre);
-                audio.start();
-                startActivity(i);
+                    i.putExtra("branco", votoBranco);
+                    i.putExtra("nulo", votoNulo);
+                    i.putExtra("bart", votoBart);
+                    i.putExtra("homer", votoHomer);
+                    i.putExtra("naruto", votoNaruto);
+                    i.putExtra("goku", votoGoku);
+                    i.putExtra("nuloPre", votoNuloPre);
+                    i.putExtra("brancoPre", votoBrancoPre);
+                    audio.start();
+                    startActivity(i);
+                }
             }
         });
 
@@ -190,6 +194,7 @@ public class Validacao extends AppCompatActivity {
         avatarPre.setImageResource(R.drawable.avatar);
         avatarVice.setImageResource(R.drawable.avatar);
         nomePre.setText(String.valueOf(""));
+        Toast.makeText(Validacao.this,"Número inválido, por favor, digite os 2 números do candidado.", Toast.LENGTH_LONG).show();
     }
 
     public void Inserir(int value){
@@ -234,7 +239,7 @@ public class Validacao extends AppCompatActivity {
     public void Branco(){
         votoBrancoPre = votoBrancoPre + 1;
         Intent i = new Intent(Validacao.this,Finaliza.class);
-        MediaPlayer audio = MediaPlayer.create(Validacao.this, R.raw.som1);
+        MediaPlayer audio = MediaPlayer.create(Validacao.this, R.raw.som2);
 
         i.putExtra("branco", votoBranco);
         i.putExtra("nulo", votoNulo);

@@ -189,9 +189,9 @@
     <View
         android:id="@+id/view5"
         android:layout_width="250dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="25dp"
-        android:background="#9C9999"
+        android:layout_height="44dp"
+        android:layout_marginTop="16dp"
+        android:background="#EAE9E9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.939"
         app:layout_constraintStart_toStartOf="parent"
@@ -258,6 +258,7 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/view5"
         app:layout_constraintEnd_toEndOf="@+id/view5"
+        app:layout_constraintHorizontal_bias="0.734"
         app:layout_constraintStart_toStartOf="@+id/view5"
         app:layout_constraintTop_toTopOf="@+id/view5" />
 
@@ -412,5 +413,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nomePre"
         app:layout_constraintVertical_bias="0.073" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="35dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view5"
+        app:layout_constraintStart_toStartOf="@+id/view5"
+        app:layout_constraintTop_toTopOf="@+id/view5"
+        app:srcCompat="@drawable/logo_justica" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

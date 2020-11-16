@@ -48,24 +48,30 @@ public class Principal extends AppCompatActivity {
                 MediaPlayer audio = MediaPlayer.create(Principal.this, R.raw.som1);
 
                 int result = Valida();
-                if (result == 11111){
-                    votoHomer = votoHomer + 1;
-                }else if (result == 22222){
-                    votoBart = votoBart + 1;
-                }else if (result == 0){
-                    Nulo();
-                }
 
-                i.putExtra("homer", votoHomer);
-                i.putExtra("bart", votoBart);
-                i.putExtra("branco", votoBranco);
-                i.putExtra("nulo", votoNulo);
-                i.putExtra("naruto", naruto);
-                i.putExtra("goku", goku);
-                i.putExtra("brancoPre", brancoPre);
-                i.putExtra("nuloPre", nuloPre);
-                audio.start();
-                startActivity(i);
+                if (num1.getText().toString().equals("") || num5.getText().toString().equals("")) {
+                    Corrige();
+                } else {
+
+                    if (result == 11111) {
+                        votoHomer = votoHomer + 1;
+                    } else if (result == 22222) {
+                        votoBart = votoBart + 1;
+                    } else if (result == 0) {
+                        Nulo();
+                    }
+
+                    i.putExtra("homer", votoHomer);
+                    i.putExtra("bart", votoBart);
+                    i.putExtra("branco", votoBranco);
+                    i.putExtra("nulo", votoNulo);
+                    i.putExtra("naruto", naruto);
+                    i.putExtra("goku", goku);
+                    i.putExtra("brancoPre", brancoPre);
+                    i.putExtra("nuloPre", nuloPre);
+                    audio.start();
+                    startActivity(i);
+                }
             }
         });
 
@@ -270,6 +276,7 @@ public class Principal extends AppCompatActivity {
         informationTecla.setText(String.valueOf(""));
         informationCorrige.setText(String.valueOf(""));
         informationNulo.setText(String.valueOf(""));
+        Toast.makeText(Principal.this,"Número inválido, por favor, digite os 5 números do candidado.", Toast.LENGTH_LONG).show();
     }
 
     public void Branco(){
